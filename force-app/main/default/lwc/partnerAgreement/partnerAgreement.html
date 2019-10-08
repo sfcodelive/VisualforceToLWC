@@ -1,0 +1,19 @@
+<template>
+    <template if:false={partnerAgreementId}>
+      <lightning-record-edit-form object-api-name="Partner_Agreement__c" onsuccess={handleSuccess}>
+          <lightning-input-field field-name="Sales_Rep_Email__c"></lightning-input-field>
+          <lightning-input-field field-name="Sales_Rep_Company__c"></lightning-input-field>
+          <lightning-input-field field-name="Sales_Rep_Name__c"></lightning-input-field>
+          <lightning-input-field field-name="Sales_Rep_Comments__c"></lightning-input-field>
+          <lightning-button class="slds-m-top_small"
+                            type="submit"
+                            label="Create Partner Agreement">
+          </lightning-button>
+      </lightning-record-edit-form>
+    </template>
+    <template if:true={partnerAgreementId}>
+      <c-pa-prod-row partneragreementid={partnerAgreementId}>
+        </c-pa-prod-row>
+    </template>
+</template>
+ 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conga_Reusable_Camlids_Query__c</fullName>
+    <externalId>false</externalId>
+    <formula>&quot;&amp;id=&quot; + Id +
+&quot;&amp;QueryId=[PAwP]a0q5A00000CJJtFQAX,[PARTNERAGREEMENT]a0q5A00000CJJtKQAX&quot; + 
+&quot;&amp;templateid=a0y5A00000AcVUGQA3&quot; +
+&quot;&amp;congaemailtemplateid=a0pF0000006JSYS&quot; +
+&quot;&amp;DefaultPDF=1&quot;+
+&quot;&amp;SertifiCustomSettings=Settings&quot;+
+&quot;&amp;SertifiVisible=1&quot;+
+&quot;&amp;SertifiEmailTo=&quot;+ Customer_Email__c +
+&quot;&amp;SertifiSigner1Email=&quot;+Customer_Email__c+
+&quot;&amp;SertifiSigner2Email=&quot;+&quot;mczarnik@cambro.com&quot;+
+&quot;&amp;SertifiCCSignerEmail=&quot; + Cambro_Rep_Email__c+
+&quot;&amp;SertifiFileName=&quot;+Facility_Name__c+&quot;&quot;+Name+
+&quot;&amp;qmode=Sertifi&quot;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Conga: Reusable Camlids Query</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

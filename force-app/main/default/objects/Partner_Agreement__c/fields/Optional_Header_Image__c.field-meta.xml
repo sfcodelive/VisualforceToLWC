@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Optional_Header_Image__c</fullName>
+    <description>Used to display the premier logo in the template for premier partner agreements
+https://c.na42.content.force.com/servlet/servlet.ImageServer?id=015F0000005SSBa&amp;oid=00D560000009P1n&amp;lastMod=1445529504000</description>
+    <externalId>false</externalId>
+    <formula>case(text(Agreement_Type__c),
+&quot;Premier Mugs and Bowls&quot;,&quot;https://c.na42.content.force.com/servlet/servlet.ImageServer?id=015F0000005SSBa&amp;oid=00D290000000PLp&amp;lastMod=1445529504000&quot; ,
+&quot;Premier Tumblers&quot;,&quot;https://c.na42.content.force.com/servlet/servlet.ImageServer?id=015F0000005SSBa&amp;oid=00D290000000PLp&amp;lastMod=1445529504000&quot;,
+&quot;Premier Harbor Mugs &amp; Bowls&quot;, &quot;https://c.na42.content.force.com/servlet/servlet.ImageServer?id=015F0000005SSBa&amp;oid=00D290000000PLp&amp;lastMod=1445529504000&quot;
+,
+&quot;&quot;
+)</formula>
+    <label>Optional Header Image</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

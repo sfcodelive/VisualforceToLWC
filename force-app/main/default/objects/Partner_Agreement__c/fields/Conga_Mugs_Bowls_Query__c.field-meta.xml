@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conga_Mugs_Bowls_Query__c</fullName>
+    <externalId>false</externalId>
+    <formula>&quot;&amp;id=&quot; + Id + 
+&quot;&amp;QueryId=[PAwP]a0q5A00000CJJtFQAX,[PARTNERAGREEMENT]a0q5A00000CJJtKQAX&quot; + 
+&quot;&amp;TemplateId=a0y5A00000AcVThQAN&quot; + 
+&quot;&amp;CongaEmailTemplateId=a0pF0000006JSYSIA4&quot; + 
+&quot;&amp;EmailRelatedToId=&quot; + Id + 
+&quot;&amp;DefaultPDF=1&quot;+ 
+&quot;&amp;SertifiCustomSettings=Settings&quot;+ 
+&quot;&amp;SertifiVisible=1&quot;+ 
+&quot;&amp;SertifiEmailTo=&quot;+ Customer_Email__c + 
+&quot;&amp;SertifiSigner1Email=&quot;+Customer_Email__c+ 
+&quot;&amp;SertifiSigner2Email=&quot;+&quot;mczarnik@cambro.com&quot;+ 
+&quot;&amp;SertifiCCSignerEmail=&quot; + Cambro_Rep_Email__c+ 
+&quot;&amp;SertifiFileName=&quot;+Facility_Name__c+&quot; &quot;+Name+
+&quot;&amp;qmode=Sertifi&quot;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>a0q5A00000CJJtFQAX</inlineHelpText>
+    <label>Conga Mugs &amp; Bowls Query</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

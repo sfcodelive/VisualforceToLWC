@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partner_Agreement__c</fullName>
+    <externalId>false</externalId>
+    <label>Partner Agreement</label>
+    <referenceTo>Partner_Agreement__c</referenceTo>
+    <relationshipLabel>Partner Agreement Products</relationshipLabel>
+    <relationshipName>Partner_Agreement_Products</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

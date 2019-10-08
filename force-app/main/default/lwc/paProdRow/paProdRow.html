@@ -1,0 +1,23 @@
+<template>
+    
+    <lightning-card title="Line Items" icon-name="custom:Partner_Agreement_Product__c"> 
+        <div class="slds-m-around_medium">
+            <template if:true={lineitems}>
+                <template for:each={lineitems} for:item="prod">
+                    <c-lineitem-tile
+                        key={prod.id}
+                        lineitem={prod}>
+                    </c-lineitem-tile>
+                </template>    
+           </template>           
+        </div>
+    </lightning-card>
+    <template if:false={lineitems}>
+        <p>No line items in collection. Please try again</p>
+    </template>
+    <template if:true={error}>
+        <p>Danger Wil Robinson! {error}</p>
+    </template>
+
+    <c-new-pa-line-item partneragreementid={partneragreementid}></c-new-pa-line-item>
+</template>

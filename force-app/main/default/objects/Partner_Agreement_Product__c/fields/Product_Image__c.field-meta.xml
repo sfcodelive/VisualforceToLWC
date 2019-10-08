@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Image__c</fullName>
+    <externalId>false</externalId>
+    <formula>IMAGE(Image_Location__c,&#39;&#39;,50, 50)</formula>
+    <inlineHelpText>FORMULA: Displays the image based on the Image Location URL provided</inlineHelpText>
+    <label>Product Image</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

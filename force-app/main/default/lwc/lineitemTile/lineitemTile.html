@@ -1,0 +1,19 @@
+<template>
+    <template if:true={lineitem}>
+        <lightning-layout vertical-align="center">
+            <lightning-layout-item>
+                <img src={lineitem.Image_Location__c} width="50" height="50"/>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small">
+                <p>{lineitem.Code__c}</p>
+                <p>{lineitem.Description__c}</p>
+                <p>{lineitem.Quantity__c}</p>
+                <p><lightning-input type="number" label="Quantity" value={lineitem.Quantity__c}></lightning-input></p>
+            </lightning-layout-item>
+
+        </lightning-layout>
+    </template>
+    <template if:false={lineitem}>
+        <p>No line items. Do not pass go. Do not collect 100 dollars</p>
+    </template>
+</template>

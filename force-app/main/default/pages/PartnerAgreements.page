@@ -1,0 +1,163 @@
+<apex:page standardcontroller="Partner_Agreement__c" extensions="PartnerAgreement_ext" showHeader="false" sidebar="false" title="Partner Agreement">
+
+<apex:image value="https://c.na112.content.force.com/servlet/servlet.ImageServer?id=0153i000000hpS1&oid=00D3i000000tqGM&lastMod=1568664689000" width="250" height="100"/>
+
+<apex:form id="theForm">
+	<apex:pageblock title="Partner Agreement Submitted" rendered="{!renderSuccess}">
+		<apex:outputtext value="Thank you. The Agreement has been submitted. Your reference number is: {!RecordName}"/> <br/>
+		<apex:outputtext value="You will receive an email shortly" rendered="{!Partner_Agreement__c.Send_to_Rep__c != null}" /><br/>		
+		<apex:outputtext value="Reminder, Renewals require Lid Compliance to be sent to your Healthcare Specialist: {!vSpecialist}" rendered="{!Partner_Agreement__c.Renewal__c == 'Yes'}" style="Font-size:16px;color:red;" />
+	</apex:pageblock>
+	<apex:pageblock title="Partnership Agreement" rendered="{!Partner_Agreement__c.id == null}" >
+		<apex:pageBlockButtons location="bottom" >
+			<apex:commandbutton value="Submit and Email Form To Rep" action="{!SumbitEmailRep}" rerender="theForm" rendered="{!Partner_Agreement__c.Agreement_Type__c != null}"/>
+		</apex:pageBlockButtons>
+		<apex:outputpanel id="errors">
+			<apex:pageMessages />
+		</apex:outputpanel>
+
+		<apex:outputpanel id="AgreementType" rendered="False"
+		>
+          <apex:actionregion >
+        	<apex:inputfield value="{!Partner_Agreement__c.Agreement_Type__c}" > 
+				<apex:actionSupport action="{!RefreshProds}" event="onchange" rerender="theForm,ProductForm,AgreementType" />
+			</apex:inputfield>
+			</apex:actionregion>
+		</apex:outputpanel>
+
+		<apex:outputpanel id="ProductForm" >
+			<apex:variable value="{!0}" var="rowNum"/>  
+			<apex:pageblocksection title="Sale Rep Information" columns="2" rendered="{!Partner_Agreement__c.Agreement_Type__c != null}">						
+				<apex:selectList id="RepCompany" value="{!Partner_Agreement__c.Sales_Rep_Company__c}"
+         size="1" required="true">
+         			<apex:selectOption itemLabel="--none--" itemValue=""/>
+			  		<apex:selectOptions value="{!RepGroups}"/>
+				</apex:selectList>
+				
+				<apex:inputfield value="{!Partner_Agreement__c.Sales_Rep_Email__c}" required="true" />
+				<apex:inputfield value="{!Partner_Agreement__c.Sales_Rep_Name__c}" required="true" />
+				<apex:inputfield value="{!Partner_Agreement__c.Sales_Rep_Comments__c}" required="false" />
+			</apex:pageblocksection>	 
+			<apex:pageblocksection title="Products" columns="1" rendered="{!Partner_Agreement__c.Agreement_Type__c != null}">
+			
+			<apex:pageBlockTable var="PAP" value="{!PrdColors}">
+				<apex:column headerValue="Code">
+					<apex:image value="{!PAP.ProdItem.Image_Location__c}" width="50" height="50" rendered="{!PAP.ProdItem.Image_Location__c != null}"/>
+					<apex:outputfield value="{!PAP.ProdItem.Code__c}" />
+				</apex:column>
+				<apex:column headerValue="Description">
+					<apex:outputfield value="{!PAP.ProdItem.Description__c}" />
+				</apex:column>	
+
+	
+				<!-- Don't keep
+				<apex:column headerValue="Fits Shoreline Products" rendered="{!DisplayShoreLine}">
+					<apex:outputfield value="{!PAP.ProdItem.Fits_Shoreline_Products__c}"  />
+				</apex:column>
+				<apex:column headerValue="Approx. Capacity" rendered="{!DisplayCapacity}">
+					<apex:outputfield value="{!PAP.ProdItem.Approx_Capacity__c}"  />
+				</apex:column>
+				<apex:column headerValue="Outside Diameter" rendered="{!DisplayDiameter}">
+					<apex:outputfield value="{!PAP.ProdItem.Outside_Diameter__c}"  />
+				</apex:column>
+				<apex:column headerValue="Height" rendered="{!DisplayHeight}">
+					<apex:outputfield value="{!PAP.ProdItem.Height__c}" />
+				</apex:column>
+				<apex:column headerValue="Full-Size Camrack" rendered="{!DisplayCamRack}">
+					<apex:outputfield value="{!PAP.ProdItem.Full_Size_Camrack__c}"  />
+				</apex:column>
+				<apex:column headerValue="{!CasePacklabel}">
+					<apex:outputfield value="{!PAP.ProdItem.Case_Pack__c}" />
+				</apex:column>
+				<apex:column headerValue="Disposable Lid Code"  rendered="{!DisplayDisposableLidCode}">
+					<apex:outputfield value="{!PAP.ProdItem.Disposable_Lid_Code__c}" />
+				</apex:column>
+				<apex:column headervalue="Case Pack" rendered="{!DisplayOtherCasePack}">
+					<apex:outputfield value="{!PAP.ProdItem.Other_Case_Pack__c}"  />
+				</apex:column>
+				<apex:column headerValue="Free Goods** Requested in Units">
+					<apex:inputfield value="{!PAP.ProdItem.Free_Goods_Requested_in_Units__c}" required="true" />
+				</apex:column>
+				<apex:column headerValue="Free Goods** Requested in Cases">
+					<apex:inputfield value="{!PAP.ProdItem.Free_Goods_Requested_in_Cases__c}" required="true"/>
+				</apex:column>
+				<apex:column headerValue="Free Goods** Requested Color Code" rendered="{!DisplayRequestedColorCode}">
+					<apex:selectList value="{!PAP.ProdItem.Free_Goods_Requested_Color_Code__c}" size="1" required="true" label="Color Code">
+						<apex:selectoptions value="{!PAP.Colors}"/>				
+					</apex:selectlist>
+				</apex:column>
+				<apex:column headerValue="Initial Lid Order in Cases">
+					<apex:inputfield value="{!PAP.ProdItem.Initial_Lid_Order_In_Cases__c}" required="true"/>
+				</apex:column>	
+			-->
+		
+				<apex:column headerValue="Quantity">
+					<apex:inputfield value="{!PAP.ProdItem.Quantity__c}" required="true" />
+				</apex:column>
+				<apex:column headerValue="Action">
+			        <apex:commandLink value="Remove" style="color:red" action="{!RemoveRow}"	 rerender="ProductForm" immediate="true" >
+			             <apex:param value="{!rowNum}" name="rowToRemove" assignTo="{!rowToRemove}"/>
+			         </apex:commandLink>
+			         <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+			    </apex:column>
+			</apex:pageBlockTable>
+			<apex:pageBlockSectionItem >
+			<apex:outputpanel >
+			<apex:actionRegion >
+					<apex:selectList value="{!vNewProd}" size="1" label="Add Line">
+						<apex:selectoptions value="{!ProdNumbers}"/>				
+				
+					</apex:selectList>  
+			</apex:actionRegion>		
+			<apex:commandbutton value="Add" style="color:green" action="{!addRow}" rerender="ProductForm">			
+			</apex:commandbutton>			
+			</apex:outputpanel>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputpanel >
+					<apex:outputlabel value="Do you need to request products outside this agreement type?"/> <br/>
+					<apex:inputfield value="{!Partner_Agreement__c.Special_Request__c}"/> <br/>
+					Selecting "Yes" requires review and approval prior to documents being sent
+				</apex:outputpanel>
+			</apex:pageBlockSectionItem>
+			</apex:pageblocksection>
+	
+<!-- DON"T KEEP
+			<apex:pageblocksection title="Facility Information" rendered="{!Partner_Agreement__c.Agreement_Type__c != null}">						
+				<apex:outputfield value="{!Partner_Agreement__c.Renewal__c}" rendered="{!DisplayRenewal}"/>
+				<apex:inputfield value="{!Partner_Agreement__c.Facility_Name__c}" required="true" />
+				<apex:inputfield value="{!Partner_Agreement__c.Street_Address__c}" required="true" />
+				<apex:inputfield value="{!Partner_Agreement__c.City__c}" required="true"/>
+				<apex:inputfield value="{!Partner_Agreement__c.State__c}" required="true"/>
+				<apex:inputfield value="{!Partner_Agreement__c.Zip_Postal_Code__c}" required="true"/>
+				<apex:inputfield value="{!Partner_Agreement__c.Customer_Phone__c}" required="true"/>				
+				<apex:inputfield value="{!Partner_Agreement__c.Customer_Name__c}" required="true"/>
+				<apex:inputfield value="{!Partner_Agreement__c.Customer_Title__c}" required="true"/>				
+				<apex:inputfield value="{!Partner_Agreement__c.Customer_Email__c}" required="true"/>
+				<apex:inputfield value="{!Partner_Agreement__c.Customer_Fax__c}" required="true"/>
+				<apex:inputfield value="{!Partner_Agreement__c.Licensed_Beds__c}" required="true"/>
+				<apex:inputfield value="{!Partner_Agreement__c.Room_Trays_Served__c}" required="true"/>
+			</apex:pageblocksection>
+
+			<apex:pageblocksection title="Distributor Information" rendered="{!Partner_Agreement__c.Agreement_Type__c != null}">
+				<apex:inputfield value="{!Partner_Agreement__c.Distributor_Name__c}" required="true"/>				
+				<apex:inputfield value="{!Partner_Agreement__c.Distributor_Sales_Rep_E_mail__c}" required="true"/>
+				<apex:inputfield value="{!Partner_Agreement__c.Distributor_Street_Address__c}" required="true"/>
+				<apex:inputfield value="{!Partner_Agreement__c.Distributor_City__c}" required="true"/>
+				<apex:inputfield value="{!Partner_Agreement__c.Distributor_State__c}" required="true"/>
+				<apex:inputfield value="{!Partner_Agreement__c.Distributor_Zip_Code__c}" required="true"/>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="Your Healthcare Specialist" />
+					<apex:selectList value="{!vSpecialist}" size="1" required="true" label="Healthcare Specialist">
+						<apex:selectoptions value="{!vSpecialists}"/>				
+					</apex:selectlist>
+				</apex:pageBlockSectionItem>
+			</apex:pageblocksection>
+		-->
+		
+		</apex:outputpanel>
+	</apex:pageblock>
+
+</apex:form>
+
+</apex:page>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Agreement_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Agreement Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Harbor Mugs &amp; Bowls</fullName>
+                <default>false</default>
+                <label>Harbor Mugs &amp; Bowls</label>
+            </value>
+            <value>
+                <fullName>Mugs &amp; Bowls</fullName>
+                <default>false</default>
+                <label>Mugs &amp; Bowls</label>
+            </value>
+            <value>
+                <fullName>Premier Harbor Mugs &amp; Bowls</fullName>
+                <default>false</default>
+                <label>Premier Harbor Mugs &amp; Bowls</label>
+            </value>
+            <value>
+                <fullName>Premier Mugs &amp; Bowls</fullName>
+                <default>false</default>
+                <label>Premier Mugs &amp; Bowls</label>
+            </value>
+            <value>
+                <fullName>Premier Tumblers</fullName>
+                <default>false</default>
+                <label>Premier Tumblers</label>
+            </value>
+            <value>
+                <fullName>Reusable CamLids and Store Racks</fullName>
+                <default>false</default>
+                <label>Reusable CamLids and Store Racks</label>
+            </value>
+            <value>
+                <fullName>Tumblers</fullName>
+                <default>false</default>
+                <label>Tumblers</label>
+            </value>
+            <value>
+                <fullName>Vizient Harbor Mugs &amp; Bowls</fullName>
+                <default>false</default>
+                <label>Vizient Harbor Mugs &amp; Bowls</label>
+            </value>
+            <value>
+                <fullName>Vizient Mugs &amp; Bowls</fullName>
+                <default>false</default>
+                <label>Vizient Mugs &amp; Bowls</label>
+            </value>
+            <value>
+                <fullName>Vizient Tumblers</fullName>
+                <default>false</default>
+                <label>Vizient Tumblers</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
