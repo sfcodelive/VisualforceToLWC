@@ -7,7 +7,7 @@ export default class paProdRow extends LightningElement {
     @track lineitems;
     @track error;
 
-    @wire(findlineitems)
+    @wire(findlineitems, { partnerAgreementId: '$partneragreementid' })
     wiredlineitems({error, data}){
         if(data){
             this.lineitems=data;

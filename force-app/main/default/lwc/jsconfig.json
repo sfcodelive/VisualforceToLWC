@@ -6,23 +6,17 @@
             "c/lineitemTile": [
                 "lineitemTile/lineitemTile.js"
             ],
+            "c/newPaLineItem": [
+                "newPaLineItem/newPaLineItem.js"
+            ],
             "c/paProdRow": [
                 "paProdRow/paProdRow.js"
-            ],
-            "c/PartnerAgreemetnWrapper": [
-                "PartnerAgreemetnWrapper/PartnerAgreemetnWrapper.js"
-            ],
-            "c/partnerAgreemetnWrapper": [
-                "partnerAgreemetnWrapper/partnerAgreemetnWrapper.js"
-            ],
-            "c/PartnerAgreement": [
-                "PartnerAgreement/PartnerAgreement.js"
             ],
             "c/partnerAgreement": [
                 "partnerAgreement/partnerAgreement.js"
             ],
-            "c/newPaLineItem": [
-                "newPaLineItem/newPaLineItem.js"
+            "c/partnerAgreemetnWrapper": [
+                "partnerAgreemetnWrapper/partnerAgreemetnWrapper.js"
             ]
         }
     },
